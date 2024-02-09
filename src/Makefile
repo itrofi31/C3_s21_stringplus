@@ -36,6 +36,7 @@ gcov_report: tests/test.c s21_string_funcs.o
 	./gcov_report
 	lcov --capture --directory . --output-file coverage.info
 	genhtml coverage.info --output-directory out
+	open out/index.html
 
 clean:
 	rm -rf s21_string *.o *.a tests/*.o tests/test tests/*.c gcov_report *.gcno *.gcda *.info out
