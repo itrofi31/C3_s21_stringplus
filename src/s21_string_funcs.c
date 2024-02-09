@@ -195,6 +195,7 @@ char *s21_strerror(int errnum) {
 #ifdef __APPLE__
     sprintf(message, "Unknown error: %d", errnum);
     // s21_sprintf(message, "Unknown error: %d", errnum);
+    // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 #elif __linux__
     sprintf(message, "Unknown error %d", errnum);
 #endif
