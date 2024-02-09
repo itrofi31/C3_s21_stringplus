@@ -189,18 +189,15 @@ char *s21_strerror(int errnum) {
   // uncomment when sprintf is ready
 
   static char message[50];
-  if (errnum < 0 || errnum >= errors_size) {
+
+  int is_known_error = errnum >= 0 && errnum < errors_size;
+  if (!is_known_error) {
 #ifdef __APPLE__
     sprintf(message, "Unknown error: %d", errnum);
+    // s21_sprintf(message, "Unknown error: %d", errnum);
 #elif __linux__
     sprintf(message, "Unknown error %d", errnum);
 #endif
-  } else {
-    s21_strncpy(message, errors_list[errnum], sizeof(message) - 1);
-    message[sizeof(message) - 1] = '\0';
   }
-  return message;
-
-  // return errnum < 0 || errnum >= errors_size ? "Unknown error"
-  //                                            : errors_list[errnum];
+  return is_known_error ? errors_list[errnum] : message;
 }
